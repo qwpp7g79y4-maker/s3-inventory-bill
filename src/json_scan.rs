@@ -259,7 +259,9 @@ mod tests {
 
     #[test]
     fn large_padding_is_scanned_in_linear_time() {
-        let limit = Duration::from_millis(500);
+        // 150_000 keys is about 2 MB. A quadratic scan is many seconds.
+        // Half a second is too tight for a busy Intel macOS runner.
+        let limit = Duration::from_secs(2);
         // Many distinct keys, about 2 MB.
         let mut keys = String::from("{");
         for n in 0..150_000 {

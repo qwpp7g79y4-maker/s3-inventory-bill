@@ -271,7 +271,7 @@ fn options_block_is_the_help_text_of_the_binary() {
         .arg("--help")
         .output()
         .unwrap();
-    let help = String::from_utf8(out.stdout).unwrap();
+    let help = String::from_utf8(out.stdout).unwrap().replace("\r\n", "\n");
     assert!(
         options.contains(help.trim_end()),
         "the Options section must hold the --help text"

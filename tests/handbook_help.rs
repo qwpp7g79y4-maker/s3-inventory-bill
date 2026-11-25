@@ -40,7 +40,9 @@ fn help_long_options_match_the_man_page_and_unknown_option_is_not_a_panic() {
     let bin = env!("CARGO_BIN_EXE_s3-inventory-bill");
     let output = Command::new(bin).arg("--help").output().unwrap();
     assert_eq!(output.status.code(), Some(0), "stderr: {:?}", output.stderr);
-    let help = String::from_utf8(output.stdout).unwrap();
+    let help = String::from_utf8(output.stdout)
+        .unwrap()
+        .replace("\r\n", "\n");
     assert!(!help.is_empty(), "--help stdout is empty");
 
     let path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("man/s3-inventory-bill.1");
