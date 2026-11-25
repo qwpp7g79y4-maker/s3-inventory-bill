@@ -6,7 +6,7 @@ Suite: 217 passed, 0 failed, 0 ignored.
 
 This page records checks. It is not a guarantee and it is not a fuzz report. This version is not published and has no git tag.
 
-Measured on 2026-11-23, on Linux (x86_64), on the code commit `5f02e4a65fb6f53625ed83678d0df820f7accd07`. That commit holds the last change to code, tests, build files and workflows; every later commit changes documents only. Only the five commands in the first table below were run on that commit, from the crate root, with `--locked`, as `cargo fmt --check`, `cargo clippy ...` and `cargo test --locked`; no memory limit and no `-j` or `--test-threads` option was set. The rows of the second table were measured on 2026-11-20 on the earlier code commit `6b36822` and were not run again. GitHub CI on `main` commit `2d43ce8f7c4a070f72fc4e7dae189c3841d88459` passed: run 45577649641, jobs ubuntu-latest, ubuntu-latest with Rust 1.85, windows-latest, macos-latest, macos-15-intel, Dependency licenses, Dependency audit, and Highest glibc symbol. Commits after `5f02e4a` also changed `src/money.rs`, `src/main.rs`, `src/json_scan.rs` and tests. Only measured results are stated.
+Measured on 2026-11-23, on Linux (x86_64), on the code commit `5f02e4a65fb6f53625ed83678d0df820f7accd07`. Only the five commands in the first table below were run on that commit, from the crate root, with `--locked`, as `cargo fmt --check`, `cargo clippy ...` and `cargo test --locked`; no memory limit and no `-j` or `--test-threads` option was set. The rows of the second table were measured on 2026-11-20 on the earlier code commit `6b36822` and were not run again. GitHub CI on `main` commit `7d7c78befbcb71a4132cc6e174d0ba452037c0a0` passed: run 45582606112, jobs ubuntu-latest, ubuntu-latest with Rust 1.85, windows-latest, macos-latest, macos-15-intel, Dependency licenses, Dependency audit, and Highest glibc symbol. Commits after `5f02e4a` also changed `src/money.rs`, `src/main.rs`, `src/json_scan.rs`, tests, and `.github/workflows/release.yml`. Only measured results are stated.
 
 Toolchain: rustc 1.99.0 (b940084d7 2026-09-28) and cargo 1.99.0 (5f94df478 2026-08-27). For the minimum supported version: rustc 1.85.1 (4eb161250 2025-03-15) and cargo 1.85.1 (d73d2caf9 2024-12-31). cargo-deny 0.20.2, cargo-audit 0.22.2, cargo-about 0.9.2.
 
@@ -40,7 +40,7 @@ Measured on the earlier code commit `6b36822` (2026-11-20) and not run again on 
 | `actionlint .github/workflows/ci.yml .github/workflows/release.yml` | 0 |
 | `bash scripts/check-glibc.sh target/release/s3-inventory-bill 2.34` | 0 |
 
-The Windows and macOS test jobs ran on GitHub CI run 45577649641 and passed. A musl build has only been linted, not run. `cargo audit --no-fetch` read the local database (see "Not run") and reported none.
+The Windows and macOS test jobs ran on GitHub CI run 45582606112 and passed. A musl build has only been linted, not run. `cargo audit --no-fetch` read the local database (see "Not run") and reported none.
 
 `cargo package --list` has 53 paths: the manifest files, `.cargo_vcs_info.json`, `.gitattributes`, `.gitignore`, both workflows (`ci.yml`, `release.yml`) and `dependabot.yml`, `CHANGELOG.md`, `CONTRIBUTING.md`, both licenses, `QUALITY.md`, `QUALITY.nl.md`, `README.md`, `README.nl.md`, `SECURITY.md`, `about.hbs`, `about.toml`, `build.rs`, `deny.toml`, `examples/README.md`, `examples/inventory.csv`, `examples/inventory.expected`, `man/s3-inventory-bill.1`, `prices/s3-storage.json`, `scripts/check-glibc.sh`, `src/*.rs` and `tests/*.rs`. It has no file that is only for local work. The suite also passes in the unpacked package: the `.crate` was unpacked in an empty directory and `cargo test --offline` there gave 210 passed, 0 failed (no git checkout: the version test then expects no commit in `--version`). `cargo package` read `exclude` as a block of several lines; `tests/docs_clean.rs` reads the array on one line and on several lines.
 
@@ -171,7 +171,7 @@ In the last row the output file held 1218 bytes for the report, 851 for `--help`
 
 - A fuzz campaign.
 - A mutation tool. Edits of the code were tried by hand on a copy, as named above.
-- The release workflow and a release archive. CI has run: run 45577649641 on `2d43ce8f7c4a070f72fc4e7dae189c3841d88459` passed. `cargo about generate` also wrote `THIRD-PARTY-LICENSES.html` in the repository.
+- The release workflow and a release archive. CI has run: run 45582606112 on `7d7c78befbcb71a4132cc6e174d0ba452037c0a0` passed. `cargo about generate` also wrote `THIRD-PARTY-LICENSES.html` in the repository.
 - A build and a test run on musl. The Windows and macOS test jobs passed on that same run. Tests that need symlinks or fifos run on Unix only; tests that need a file name that is not UTF-8 or a control character in a file name, and the closed-stdout tests, run on Linux only.
 - `cargo audit` with a freshly fetched advisory database.
 - `cargo install` from the checkout. (`cargo package` with its verify build ran, see above.)
@@ -211,7 +211,7 @@ Known limits that are not fixed. Measured with the release binary on 2026-11-19 
 - An empty key and a key written `(empty)` fall into one prefix line (`b,,1,STANDARD` plus `b,(empty),2,STANDARD` gives `(empty) objects=2`).
 - Keys are not URL-decoded. A raw inventory file that has URL-encoded keys is priced under the encoded prefixes (README, `keys_are_used_as_written_and_not_url_decoded`).
 - The report prints `as of:` (the price date) and, in the lifecycle block, `as-of:` (the `--as-of` date). Both labels are kept.
-- The release workflow has not run. CI has: run 45577649641. See "Not run".
+- The release workflow has not run. CI has: run 45582606112. See "Not run".
 
 ## Claim → test
 
@@ -268,7 +268,7 @@ Every numbered claim of `README.md` and the other statements of its text, with t
 | W19 | An empty key and a key `(empty)` share one prefix line | `cr_only_file_is_refused_and_empty_key_shares_the_empty_prefix` | tested |
 | W20 | One line of 200,000 quoted fields is refused in under a second; a line of 5,000,000 is refused in 0.05 s | `one_line_with_many_quoted_fields_is_read_in_linear_time` (unit level, 2 s limit) | tested (time); gap: no test measures the memory of the 5,000,000 field line, measured by hand |
 | W21 | Memory follows the number of distinct prefixes; the measured figures (2,000,000 prefixes, 10 prefixes, the 1073741824 byte file) | `many_distinct_prefixes_are_priced_in_a_moment` (time only, 40,000 prefixes in under 4 s in debug and not more than about 3 times the time of 20,000); memory measured by hand on 2026-11-20 | tested (time); gap: no test measures memory |
-| W22 | System requirements: Rust 1.85 or newer, glibc 2.34 or newer on Linux | the run on Rust 1.85.1 (`cargo +1.85 test`); `scripts/check-glibc.sh` ran by hand on the release binary | gap: no test for the glibc figure; the GitHub job Highest glibc symbol passed on run 45577649641 |
+| W22 | System requirements: Rust 1.85 or newer, glibc 2.34 or newer on Linux | the run on Rust 1.85.1 (`cargo +1.85 test`); `scripts/check-glibc.sh` ran by hand on the release binary | gap: no test for the glibc figure; the GitHub job Highest glibc symbol passed on run 45582606112 |
 | W23 | A backslash in a file name is doubled once in an error | `backslash_in_a_path_is_escaped_exactly_once`, `shown_path_leaves_escaping_to_the_error` | tested |
 | W24 | No local path, internal name or work file name in the documents, the man page, the sources, the tests or the CI files | `documents_code_tests_and_ci_hold_no_local_paths_or_work_file_names`, `the_scan_reaches_the_ci_file_and_the_sources`, `the_check_finds_each_pattern` | tested |
 | W25 | `--as-of` is a day: an object last modified on or before it is eligible; the time of day is not read; help, README and man agree | `as_of_day_is_the_whole_day_and_the_next_day_is_not_eligible`, `as_of_help_names_the_day_rule_in_help_readme_and_man` | tested |

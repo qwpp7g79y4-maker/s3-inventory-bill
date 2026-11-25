@@ -18,7 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `build.rs`: a debug build prints the commit of its own checkout after the version in `--version`; a release build, a build outside a checkout and a build without git print the version only (`tests/version.rs`).
 - `about.hbs` and `about.toml` for the third-party license listing, and `.github/workflows/release.yml` that builds the release archives from a version tag after CI passes and puts `THIRD-PARTY-LICENSES.html` in each. The same file is committed at the repository root so it is visible without a release.
 - `THIRD-PARTY-LICENSES.html`, generated with `cargo about generate --locked about.hbs`.
-- The README and the quality pages name GitHub CI run 45577649641. Windows and macOS tests passed there. A musl build is still only linted.
+- The README and the quality pages name GitHub CI run 45582606112 on commit `7d7c78befbcb71a4132cc6e174d0ba452037c0a0`. Windows and macOS tests passed there. A musl build is still only linted.
+- The release workflow passes `--clobber` to `gh release upload`, so a second run can replace assets of the same name. The first release still uses `gh release create`.
+- The README and the security page say the built tool starts no subprocess. The build script may run local git during `cargo build`.
 
 - The suite has 210 tests, measured on 2026-11-20 on stable, in release, on Rust 1.85 and in the unpacked package.
 - `"schema_version": 1` is the first key of every JSON document. An error prints no JSON.
