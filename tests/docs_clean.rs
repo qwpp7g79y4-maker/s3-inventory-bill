@@ -30,11 +30,12 @@ const FORBIDDEN: [&str; 20] = [
 ];
 
 /// Single files that are scanned.
-const FILES: [&str; 14] = [
+const FILES: [&str; 15] = [
     "README.md",
     "README.nl.md",
     "CONTRIBUTING.md",
     "build.rs",
+    "THIRD-PARTY-LICENSES.html",
     "about.hbs",
     "about.toml",
     "QUALITY.md",

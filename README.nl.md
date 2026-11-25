@@ -21,7 +21,7 @@ cargo install --locked --path .
 s3-inventory-bill --help
 ```
 
-Bij een release werkt `cargo install s3-inventory-bill` en voegt de release-workflow archieven toe voor Linux (glibc en musl), Windows en macOS, elk met `THIRD-PARTY-LICENSES.html`. Zolang er geen release is, bestaan die archieven ook niet.
+De licenties van de derde-partij-crates in de binary staan in [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html). Een release-archief bevat datzelfde bestand. Zolang er geen release is, werkt `cargo install s3-inventory-bill` vanaf crates.io niet; installeer vanuit deze checkout.
 
 Ondersteunde systemen: Linux is het geteste systeem (glibc 2.34 of nieuwer voor een glibc-build). De Windows- en macOS-builds zijn hier alleen typegecontroleerd en een musl-build is alleen gelint (zie "Beperkingen" en [QUALITY.nl.md](QUALITY.nl.md)).
 
@@ -342,7 +342,7 @@ Meld bugs via GitHub Issues van deze repository. Na een release staat de tool in
 
 ## Licentie
 
-MIT OR Apache-2.0. Zie [LICENSE-MIT](LICENSE-MIT) en [LICENSE-APACHE](LICENSE-APACHE). Release-archieven bevatten `THIRD-PARTY-LICENSES.html` met de licenties van de derde-partij-crates in de binary.
+MIT OR Apache-2.0. Zie [LICENSE-MIT](LICENSE-MIT) en [LICENSE-APACHE](LICENSE-APACHE). [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html) noemt de derde-partij-crates in de binary en hun licentieteksten. Een release-archief bevat datzelfde bestand.
 
 ## Ondersteuning
 

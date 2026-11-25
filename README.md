@@ -21,7 +21,7 @@ cargo install --locked --path .
 s3-inventory-bill --help
 ```
 
-When a release is made, `cargo install s3-inventory-bill` will work and the release workflow attaches archives for Linux (glibc and musl), Windows and macOS, each with `THIRD-PARTY-LICENSES.html`. Until a release exists, those archives do not exist either.
+The licenses of the third-party crates in the binary are in [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html). A release archive includes that same file. Until a release exists, `cargo install s3-inventory-bill` from crates.io does not work; install from this checkout.
 
 Supported systems: Linux is the tested system (glibc 2.34 or newer for a glibc build). The Windows and macOS builds are only type-checked here, and a musl build has only been linted (see "Limitations" and [QUALITY.md](QUALITY.md)).
 
@@ -344,7 +344,7 @@ Report bugs through GitHub Issues of this repository. After a release the tool i
 
 ## License
 
-MIT OR Apache-2.0. See [LICENSE-MIT](LICENSE-MIT) and [LICENSE-APACHE](LICENSE-APACHE). Release archives include `THIRD-PARTY-LICENSES.html` with the licenses of the third-party crates in the binary.
+MIT OR Apache-2.0. See [LICENSE-MIT](LICENSE-MIT) and [LICENSE-APACHE](LICENSE-APACHE). [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html) lists the third-party crates in the binary and their license texts. A release archive includes that same file.
 
 ## Support
 
