@@ -23,7 +23,7 @@ s3-inventory-bill --help
 
 De licenties van de derde-partij-crates in de binary staan in [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html). Een release-archief bevat datzelfde bestand. Zolang er geen release is, werkt `cargo install s3-inventory-bill` vanaf crates.io niet; installeer vanuit deze checkout.
 
-Ondersteunde systemen: Linux is het geteste systeem (glibc 2.34 of nieuwer voor een glibc-build). De Windows- en macOS-builds zijn hier alleen typegecontroleerd en een musl-build is alleen gelint (zie "Beperkingen" en [QUALITY.nl.md](QUALITY.nl.md)).
+Ondersteunde systemen: Linux, Windows en macOS zijn getest door GitHub-CI-run [45577649641](https://github.com/qwpp7g79y4-maker/s3-inventory-bill/actions/runs/45577649641) op commit `2d43ce8f7c4a070f72fc4e7dae189c3841d88459` (ubuntu-latest, windows-latest, macos-latest en macos-15-intel). Een glibc-build heeft GLIBC_2.34 of nieuwer nodig. Er is geen minimale Windows- of macOS-versie vastgesteld. Een musl-build is alleen gelint, niet gedraaid (zie "Beperkingen" en [QUALITY.nl.md](QUALITY.nl.md)).
 
 ## Snelstart
 
@@ -328,7 +328,7 @@ Geheugen en tijd:
 
 Systeemeisen:
 
-- Rust 1.85 of nieuwer om te bouwen. De Linux-binary gebouwd met glibc heeft GLIBC_2.34 of nieuwer nodig. Windows- en macOS-builds zijn hier alleen typegecontroleerd; hun CI-jobs zijn het bewijs zodra ze draaien. Er is geen minimale Windows- of macOS-versie vastgesteld en een musl-build is alleen gelint, niet gedraaid.
+- Rust 1.85 of nieuwer om te bouwen. De Linux-binary gebouwd met glibc heeft GLIBC_2.34 of nieuwer nodig. De Windows- en macOS-testjobs zijn geslaagd op GitHub-CI-run [45577649641](https://github.com/qwpp7g79y4-maker/s3-inventory-bill/actions/runs/45577649641). Er is geen minimale Windows- of macOS-versie vastgesteld en een musl-build is alleen gelint, niet gedraaid.
 
 De testsuite en wat die dekt staan in [QUALITY.nl.md](QUALITY.nl.md).
 

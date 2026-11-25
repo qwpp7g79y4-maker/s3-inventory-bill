@@ -6,7 +6,7 @@ Suite: 217 geslaagd, 0 mislukt, 0 genegeerd.
 
 Deze pagina legt controles vast. Het is geen garantie en geen fuzz-rapport. Deze versie is niet gepubliceerd en heeft geen git-tag. De Engelse pagina (`QUALITY.md`) heeft dezelfde inhoud en is leidend bij een verschil.
 
-Gemeten op 2026-11-23, op Linux (x86_64), op de code-commit `5f02e4a65fb6f53625ed83678d0df820f7accd07`. Die commit is de geteste code; daarna zijn alleen documenten gewijzigd (`*.md` en `examples/*.md`). Alleen de vijf commando's in de eerste tabel hieronder zijn op die commit gedraaid, vanuit de root van de crate, met `--locked`, als `cargo fmt --check`, `cargo clippy ...` en `cargo test --locked`; er was geen geheugenlimiet en geen optie `-j` of `--test-threads`. De rijen van de tweede tabel zijn op 2026-11-20 gemeten op de eerdere codecommit `6b36822` en niet opnieuw uitgevoerd. CI voor deze commit: not run. Alleen echte meetwaarden staan hier; een controle die niet is uitgevoerd staat onder "Niet uitgevoerd".
+Gemeten op 2026-11-23, op Linux (x86_64), op de code-commit `5f02e4a65fb6f53625ed83678d0df820f7accd07`. Die commit is de geteste code; daarna zijn alleen documenten gewijzigd (`*.md` en `examples/*.md`). Alleen de vijf commando's in de eerste tabel hieronder zijn op die commit gedraaid, vanuit de root van de crate, met `--locked`, als `cargo fmt --check`, `cargo clippy ...` en `cargo test --locked`; er was geen geheugenlimiet en geen optie `-j` of `--test-threads`. De rijen van de tweede tabel zijn op 2026-11-20 gemeten op de eerdere codecommit `6b36822` en niet opnieuw uitgevoerd. GitHub-CI op `main` commit `2d43ce8f7c4a070f72fc4e7dae189c3841d88459` is geslaagd: run 45577649641, jobs ubuntu-latest, ubuntu-latest met Rust 1.85, windows-latest, macos-latest, macos-15-intel, Dependency licenses, Dependency audit en Highest glibc symbol. Commits na `5f02e4a` wijzigden ook `src/money.rs`, `src/main.rs`, `src/json_scan.rs` en tests. Alleen echte meetwaarden staan hier; een controle die niet is uitgevoerd staat onder "Niet uitgevoerd".
 
 Toolchain: rustc 1.99.0 (b940084d7 2026-09-28) and cargo 1.99.0 (5f94df478 2026-08-27). For the minimum supported version: rustc 1.85.1 (4eb161250 2025-03-15) and cargo 1.85.1 (d73d2caf9 2024-12-31). cargo-deny 0.20.2, cargo-audit 0.22.2, cargo-about 0.9.2.
 
@@ -40,7 +40,7 @@ Gemeten op de eerdere codecommit `6b36822` (2026-11-20) en niet opnieuw uitgevoe
 | `actionlint .github/workflows/ci.yml .github/workflows/release.yml` | 0 |
 | `bash scripts/check-glibc.sh target/release/s3-inventory-bill 2.34` | 0 |
 
-De commando's voor de doelen Windows en macOS controleren en linten de code en de tests (type-check en lint). Ze draaien ze niet.
+De Windows- en macOS-testjobs draaiden op GitHub-CI-run 45577649641 en slaagden. Een musl-build is alleen gelint, niet gedraaid.
 
 ## Twee gaten, gemeten voor en na
 
@@ -131,9 +131,9 @@ Het uitgepakte pakket: `cargo package --offline --allow-dirty` gaf 53 paden; het
 
 ## Niet uitgevoerd
 
-- GitHub Actions: de workflows (CI en release) zijn niet gestart, wegens het betaalprobleem van het account; `actionlint` heeft de bestanden alleen gelezen.
-- Een draaiende release: er is geen tag, geen release-archief en geen `cargo publish`; `cargo about generate` is lokaal gedraaid, de release-workflow niet.
-- Windows- en macOS-testruns, en een build en testrun op musl. Alleen type-check en lint draaiden.
+- De release-workflow en een release-archief. De CI is gedraaid: run 45577649641 op `2d43ce8f7c4a070f72fc4e7dae189c3841d88459` is geslaagd. `cargo about generate` schreef ook `THIRD-PARTY-LICENSES.html` in de repository.
+- Een draaiende release: er is geen tag, geen release-archief en geen `cargo publish`.
+- Een build en een testrun op musl. De Windows- en macOS-testjobs slaagden op diezelfde run.
 - Een fuzz-campagne en een mutatietool.
 - `cargo audit` met een vers opgehaalde advisory-database (de lokale database is gelezen).
 - Een bestand op de limiet van 1073741824 bytes met alleen verschillende prefixen of klassenamen.
@@ -204,7 +204,7 @@ Elke genummerde bewering van `README.md` en de andere uitspraken in de tekst, me
 | W19 | Een lege sleutel en een sleutel `(empty)` delen één prefixregel | `cr_only_file_is_refused_and_empty_key_shares_the_empty_prefix` | getest |
 | W20 | Eén regel van 200.000 geciteerde velden wordt in minder dan een seconde geweigerd; 5.000.000 in 0,05 s | `one_line_with_many_quoted_fields_is_read_in_linear_time` (unit level, 2 s limit) | getest (tijd); leemte: geen test meet het geheugen van de regel met 5.000.000 velden, met de hand gemeten |
 | W21 | Geheugen volgt het aantal verschillende prefixen; de gemeten waarden uit de README | `many_distinct_prefixes_are_priced_in_a_moment` (time only, 40,000 prefixes in under 4 s in debug and not more than about 3 times the time of 20,000); memory measured by hand on 2026-11-20 | getest (tijd); leemte: geen test meet geheugen |
-| W22 | Systeemeisen: Rust 1.85 of nieuwer, glibc 2.34 of nieuwer op Linux | the run on Rust 1.85.1 (`cargo +1.85 test`); `scripts/check-glibc.sh` ran by hand on the release binary | leemte: geen test voor de glibc-waarde; de CI-job heeft niet gedraaid |
+| W22 | Systeemeisen: Rust 1.85 of nieuwer, glibc 2.34 of nieuwer op Linux | the run on Rust 1.85.1 (`cargo +1.85 test`); `scripts/check-glibc.sh` ran by hand on the release binary | leemte: geen test voor de glibc-waarde; de GitHub-job Highest glibc symbol slaagde op run 45577649641 |
 | W23 | Een backslash in een bestandsnaam wordt in een fout één keer verdubbeld | `backslash_in_a_path_is_escaped_exactly_once`, `shown_path_leaves_escaping_to_the_error` | getest |
 | W24 | Geen lokaal pad, interne naam of werkbestandsnaam in documenten, man-pagina, bronnen, tests of CI-bestanden | `documents_code_tests_and_ci_hold_no_local_paths_or_work_file_names`, `the_scan_reaches_the_ci_file_and_the_sources`, `the_check_finds_each_pattern` | getest |
 | W25 | `--as-of` is een dag: een object op of vóór die dag is geschikt; de tijd van de dag wordt niet gelezen | `as_of_day_is_the_whole_day_and_the_next_day_is_not_eligible`, `as_of_help_names_the_day_rule_in_help_readme_and_man` | getest |

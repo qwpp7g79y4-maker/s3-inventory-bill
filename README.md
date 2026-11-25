@@ -23,7 +23,7 @@ s3-inventory-bill --help
 
 The licenses of the third-party crates in the binary are in [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html). A release archive includes that same file. Until a release exists, `cargo install s3-inventory-bill` from crates.io does not work; install from this checkout.
 
-Supported systems: Linux is the tested system (glibc 2.34 or newer for a glibc build). The Windows and macOS builds are only type-checked here, and a musl build has only been linted (see "Limitations" and [QUALITY.md](QUALITY.md)).
+Supported systems: Linux, Windows and macOS are tested by GitHub CI run [45577649641](https://github.com/qwpp7g79y4-maker/s3-inventory-bill/actions/runs/45577649641) on commit `2d43ce8f7c4a070f72fc4e7dae189c3841d88459` (ubuntu-latest, windows-latest, macos-latest and macos-15-intel). A glibc build needs GLIBC_2.34 or newer. No minimum Windows or macOS version has been determined. A musl build has only been linted, not run (see "Limitations" and [QUALITY.md](QUALITY.md)).
 
 ## Quick start
 
@@ -330,7 +330,7 @@ Memory and time:
 
 System requirements:
 
-- Rust 1.85 or newer to build. The Linux binary built with glibc needs GLIBC_2.34 or newer. Windows and macOS builds are only type-checked here; their CI jobs are the evidence once they run. No minimum Windows or macOS version has been determined, and a musl build has only been linted, not run.
+- Rust 1.85 or newer to build. The Linux binary built with glibc needs GLIBC_2.34 or newer. The Windows and macOS test jobs passed on GitHub CI run [45577649641](https://github.com/qwpp7g79y4-maker/s3-inventory-bill/actions/runs/45577649641). No minimum Windows or macOS version has been determined, and a musl build has only been linted, not run.
 
 The test suite and what it covers are in [QUALITY.md](QUALITY.md).
 
