@@ -510,9 +510,8 @@ impl Big {
     fn sub(&self, other: &Self) -> Self {
         let mut out = Vec::with_capacity(self.v.len());
         let mut borrow = 0i128;
-        for i in 0..self.v.len() {
-            let mut diff =
-                i128::from(self.v[i]) - i128::from(*other.v.get(i).unwrap_or(&0)) - borrow;
+        for (i, limb) in self.v.iter().enumerate() {
+            let mut diff = i128::from(*limb) - i128::from(*other.v.get(i).unwrap_or(&0)) - borrow;
             if diff < 0 {
                 diff += 1_i128 << 64;
                 borrow = 1;
