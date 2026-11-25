@@ -146,7 +146,7 @@ jobs:
           test "$(ls ./*.tar.gz ./*.zip | wc -l)" -eq 5
           sha256sum ./*.tar.gz ./*.zip > SHA256SUMS
           if gh release view "$TAG" > /dev/null 2>&1; then
-            gh release upload "$TAG" ./*
+            gh release upload "$TAG" --clobber ./*
           else
             gh release create "$TAG" --title "${BIN} $TAG" --generate-notes --verify-tag ./*
           fi

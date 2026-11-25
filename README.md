@@ -4,7 +4,7 @@ Estimate S3 storage cost from an Inventory CSV. Reads files only, no network.
 
 The tests and the measured numbers are in `QUALITY.md`.
 
-What it reads and does: it reads the inventory CSV files (or gzip CSV) named on the command line and, with `--prices`, one price file. It makes no network call, needs no AWS account, token or paid service, and writes nothing except the report on standard output, or the file named by `--output`. It starts no other process.
+What it reads and does: it reads the inventory CSV files (or gzip CSV) named on the command line and, with `--prices`, one price file. It makes no network call, needs no AWS account, token or paid service, and writes nothing except the report on standard output, or the file named by `--output`. The built tool starts no subprocess and links no AWS SDK. Only the build script may run local `git` during `cargo build`; if `git` is missing or fails, the release binary prints just the crate version.
 
 ## Why
 

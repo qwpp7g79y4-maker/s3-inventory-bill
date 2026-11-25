@@ -4,7 +4,7 @@ Schat de S3-opslagkosten uit een Inventory-CSV. Leest alleen bestanden, geen net
 
 De tests en de gemeten getallen staan in `QUALITY.md`.
 
-Wat hij leest en doet: hij leest de inventory-CSV-bestanden (of gzip-CSV) die op de opdrachtregel staan en, met `--prices`, één prijsbestand. Hij doet geen netwerkaanroep, heeft geen AWS-account, token of betaalde dienst nodig en schrijft alleen het rapport naar standaarduitvoer, of naar het bestand van `--output`. Hij start geen ander proces.
+Wat hij leest en doet: hij leest de inventory-CSV-bestanden (of gzip-CSV) die op de opdrachtregel staan en, met `--prices`, één prijsbestand. Hij doet geen netwerkaanroep, heeft geen AWS-account, token of betaalde dienst nodig en schrijft alleen het rapport naar standaarduitvoer, of naar het bestand van `--output`. De gebouwde tool start geen subprocess en linkt geen AWS SDK. Alleen het bouwscript kan tijdens `cargo build` lokaal `git` aanroepen; ontbreekt `git` of mislukt het, dan drukt de release-binary alleen het crate-versienummer.
 
 ## Waarom
 

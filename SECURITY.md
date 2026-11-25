@@ -27,7 +27,7 @@ We aim to respond within 7 days (best effort). Once a fix is released, the repor
 
 - It reads the files named on the command line and, with `--prices`, one regular price file. It writes to standard output and standard error. Only with `--output <path>` does it also write a file: the report goes to a temporary file in the same directory (named `.<name>.<process id>.<n>.tmp`), which is then renamed onto `<path>`. An existing file at `<path>` is replaced; a symbolic link at `<path>` is replaced and not followed, so its target is left unchanged. A directory or another non-regular file is refused. The temporary file is removed if the write fails or the run is interrupted. Nothing else is written.
 - It makes no network call. The normal dependencies are `clap`, `flate2`, `rust_decimal` and `serde_json`; none is an HTTP, DNS or AWS client.
-- It starts no other process and links no AWS SDK.
+- The built tool starts no subprocess and links no AWS SDK. Only the build script may run local `git` during `cargo build`; if `git` is missing or fails, the release binary prints just the crate version.
 - A file larger than 1073741824 bytes is refused, on disk and after gzip inflation. A gzip file with more than 100000 members is refused, and so is a `--prices` file larger than 1048576 bytes. A record has at most 64 columns, checked before the fields are copied.
 - Error messages do not repeat a cell, key or price value. Control and bidirectional characters in file names and labels are escaped in text and JSON output.
 - The binary has two modules with `unsafe` code, `stdout_probe` and `interrupt`; the library has none and forbids `unsafe`. `stdout_probe` makes one read-only `fcntl` call that notices a closed standard output; `interrupt` installs the SIGINT handler.
