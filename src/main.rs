@@ -26,7 +26,8 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
     name = "s3-inventory-bill",
     version = VERSION,
     about = "Estimate S3 storage cost from an inventory CSV. Reads files only, no network.",
-    after_help = "Exit codes: 0 ok, 2 input or usage error, 130 interrupted (SIGINT)."
+    after_help = "Exit codes: 0 ok, 2 input or usage error, 130 interrupted (SIGINT).",
+    term_width = 0
 )]
 struct Cli {
     /// S3 Inventory CSV files, or gzip-compressed CSV.
