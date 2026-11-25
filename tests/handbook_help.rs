@@ -64,7 +64,7 @@ fn help_long_options_match_the_man_page_and_unknown_option_is_not_a_panic() {
     }
     assert!(
         man.contains(&help),
-        "man page SYNOPSIS must contain the --help stdout verbatim"
+        "man page SYNOPSIS must contain the --help stdout verbatim\n--- help ---\n{help}--- end ---"
     );
 
     let from_help = long_options(&help);
