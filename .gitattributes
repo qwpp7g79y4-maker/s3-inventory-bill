@@ -1,0 +1,11 @@
+# Text files use LF on every OS; the tests compare the man page, the README,
+# the example file and the price file byte for byte.
+* text=auto eol=lf
+*.md text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.1 text eol=lf
+*.rs text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf

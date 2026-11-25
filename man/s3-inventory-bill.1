@@ -1,0 +1,170 @@
+.TH S3-INVENTORY-BILL 1 "2026-11-19" "s3-inventory-bill 1.0.0" "User Commands"
+.SH NAME
+s3-inventory-bill \- estimate S3 storage cost from an inventory CSV
+.SH SYNOPSIS
+.nf
+Estimate S3 storage cost from an inventory CSV. Reads files only, no network.
+
+Usage: s3-inventory-bill [OPTIONS] <FILE>...
+
+Arguments:
+  <FILE>...  S3 Inventory CSV files, or gzip-compressed CSV
+
+Options:
+      --prices <FILE>                Price file. The default is the built-in US East (N. Virginia) list
+      --as-of <YYYY-MM-DD>           Day that ages are measured to, `YYYY-MM-DD`. An object last modified on or before that day is eligible; the time of day is not read. Without it, savings are omitted
+      --prefix-depth <PREFIX_DEPTH>  Path segments in the prefix, 1 to 8. `logs/2024/a` at depth 1 is `logs/` [default: 1]
+      --json                         Print JSON instead of the text table
+      --md                           Print Markdown tables instead of the text table
+      --output <FILE>                Write the report to this file instead of standard output. The file is written whole and renamed into place; an existing file is replaced, a symbolic link is replaced and not followed
+      --quiet                        Print only the report and errors: no warning copies on standard error
+      --verbose                      Also print progress lines on standard error
+  -h, --help                         Print help
+  -V, --version                      Print version
+
+Exit codes: 0 ok, 2 input or usage error, 130 interrupted (SIGINT).
+.fi
+.SH DESCRIPTION
+s3-inventory-bill reads one or more local S3 Inventory CSV files and prices the storage per storage class and per key prefix.
+For eligible Standard objects it also shows what a lifecycle move to Standard-IA, Glacier Instant Retrieval, Glacier Flexible Retrieval, or Glacier Deep Archive would change.
+The transition is priced only; the tool never runs it.
+.PP
+Every amount is an estimate from list prices, not your AWS invoice; free tier, credits and discounts are not included.
+The text report says so in one line, and the JSON has
+.B "estimate": true
+at the top level.
+The monthly cost is named
+.B estimated_usd_month
+in both.
+.PP
+A warning names the date of the price file when it is more than 180 days before
+.B --as-of
+or, without it, before today.
+The exit code stays 0.
+The environment variable
+.B SOURCE_DATE_EPOCH
+(seconds since 1970-01-01 UTC), when set, replaces the clock for this check.
+.PP
+It reads files only.
+It makes no network call and uses no AWS SDK.
+.PP
+The first row of every file must be a header line that names the columns
+.BR Bucket ,
+.BR Key ,
+.B Size
+and
+.BR StorageClass ,
+in any order.
+.B LastModifiedDate
+and
+.B IntelligentTieringAccessTier
+are optional.
+A raw S3 Inventory CSV has no header line, so add one that follows the column order in the inventory's manifest.
+A file without it is refused.
+Keys are used as written and are not URL-decoded.
+.PP
+The input is a
+.I .csv
+file or a gzip
+.I .csv.gz
+file.
+Parquet and ORC are rejected.
+A directory is rejected, as is a pipe, a device or any other file that is not a regular file; a symlink to a file is followed, and a file larger than 1073741824 bytes, on disk or after gzip, is rejected.
+The same key in two rows is counted twice.
+.PP
+The built-in rates are the US East (N. Virginia) figures from the Amazon S3 pricing page as read on 2026-11-09.
+A storage class outside the quote, such as Reduced Redundancy, is not priced.
+Retrieval fees and the account free tier are not part of the result.
+Savings assume the object stays for the whole horizon and are not a forecast.
+.SH OPTIONS
+.TP
+.B --prices \fIFILE\fR
+Read the rates from a JSON price file instead of the built-in list.
+The file replaces the whole quote.
+It must be a regular file.
+An unknown field is ignored, and a duplicate key is an error.
+.TP
+.B --as-of \fIYYYY-MM-DD\fR
+The day that object ages are measured to.
+A Standard object last modified on or before that day is eligible; the time of day in LastModifiedDate is not read.
+Without it the lifecycle block is omitted and only storage is priced.
+The clock is never used as a default.
+.TP
+.B --prefix-depth \fIN\fR
+How many path segments make up the prefix, from 1 to 8.
+Any other value is a usage error with exit 2.
+The key
+.I logs/2024/a
+at depth 1 is
+.IR logs/ .
+The default is 1.
+.TP
+.B --json
+Print one JSON document instead of the text table.
+It starts with
+.BR "schema_version": 1 .
+An error prints no JSON.
+Money and byte totals are strings.
+With it, warnings go to standard error; in the text table they are lines of the report on standard output, and the price-age warning is also copied to standard error.
+.TP
+.B --md
+Print the same amounts as Markdown tables, with the estimate line, instead of the text table.
+A
+.B |
+or a line break in a name is escaped.
+With
+.BR --json ,
+it is a usage error with exit 2.
+.TP
+.B --output <FILE>
+Write the report to FILE instead of standard output; nothing is printed on standard output.
+The report is written to a temporary file in the same directory and renamed over FILE.
+An existing file is replaced.
+A symbolic link at FILE is replaced and not followed.
+A directory, a pipe or a device is refused.
+A missing directory is not created.
+Any failure is exit 2 with a message on standard error.
+.TP
+.B --quiet
+Print only the report and errors.
+With
+.BR --json ,
+the copies of the warnings on standard error are left out; the JSON still lists them.
+The text report is unchanged.
+With
+.BR --verbose ,
+it is a usage error with exit 2.
+.TP
+.B --verbose
+Also print progress lines on standard error, each starting with
+.BR s3-inventory-bill: :
+the file being read, the number of files being priced, and done.
+The report on standard output is unchanged.
+.TP
+.B -h, --help
+Print the usage text.
+.TP
+.B -V, --version
+Print the version.
+.SH EXIT STATUS
+.TP
+.B 0
+The report was written.
+.TP
+.B 2
+An input or usage error: an unreadable or unsupported file, an invalid cell, a missing column, a bad option, or standard output that is closed or cannot be written.
+The message goes to standard error.
+.TP
+.B 130
+SIGINT.
+Nothing is written to standard output, and standard error has the line
+.BR "s3-inventory-bill: interrupted by SIGINT" .
+A SIGINT during the final write of the report waits until the write is complete.
+.SH EXAMPLES
+.nf
+s3-inventory-bill examples/inventory.csv
+s3-inventory-bill \-\-as\-of 2026\-11\-09 \-\-json examples/inventory.csv
+s3-inventory-bill \-\-prefix\-depth 2 part1.csv.gz part2.csv.gz
+.fi
+.SH SEE ALSO
+README.md and QUALITY.md in the source tree.

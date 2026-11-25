@@ -1,0 +1,44 @@
+{
+  "note": "US East (N. Virginia) rates from https://aws.amazon.com/s3/pricing/ as read on 2026-11-09. The page fills its storage and request tables from the public pricing map published 2026-11-09T15:43:10Z. Glacier Deep Archive storage is the page rate Glacier Deep Archive GB Mo; that map was published 2026-09-11T12:45:07Z and the page resolves it to 0.00099. Request figures in this file are per request. The page shows lifecycle transition requests per 1,000 requests (multiply by 1,000). 1 TB is 1,024 GB. Express One Zone uses the page token Express One Zone Storage Inf per GB Mo, which is the Express storage rate, not Infrequent Access. Minimum sizes, minimum durations, and Glacier metadata bytes are the footnotes on that page.",
+  "source_url": "https://aws.amazon.com/s3/pricing/",
+  "source_date": "2026-11-09",
+  "region": "us-east-1",
+  "region_name": "US East (N. Virginia)",
+  "usd_per_gb_month": {
+    "standard_first_50_tb": "0.023",
+    "standard_next_450_tb": "0.022",
+    "standard_over_500_tb": "0.021",
+    "standard_ia": "0.0125",
+    "onezone_ia": "0.01",
+    "glacier_ir": "0.004",
+    "glacier": "0.0036",
+    "deep_archive": "0.00099",
+    "it_frequent_first_50_tb": "0.023",
+    "it_frequent_next_450_tb": "0.022",
+    "it_frequent_over_500_tb": "0.021",
+    "it_infrequent": "0.0125",
+    "it_archive_instant": "0.004",
+    "it_archive": "0.0036",
+    "it_deep_archive": "0.00099",
+    "express_onezone": "0.11"
+  },
+  "usd_per_object": {
+    "it_monitoring": "0.0000025"
+  },
+  "usd_per_request": {
+    "lifecycle_standard_ia": "0.00001",
+    "lifecycle_onezone_ia": "0.00001",
+    "lifecycle_intelligent_tiering": "0.00001",
+    "lifecycle_glacier_ir": "0.00002",
+    "lifecycle_glacier": "0.00003",
+    "lifecycle_deep_archive": "0.00005"
+  },
+  "min_billable_bytes": 131072,
+  "ia_min_days": 30,
+  "glacier_ir_min_days": 90,
+  "glacier_min_days": 90,
+  "deep_archive_min_days": 180,
+  "meta_standard_bytes": 8192,
+  "meta_class_bytes": 32768,
+  "it_monitor_min_bytes": 131072
+}

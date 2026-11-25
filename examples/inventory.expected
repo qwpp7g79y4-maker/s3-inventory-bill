@@ -1,0 +1,20 @@
+s3-inventory-bill
+source: https://aws.amazon.com/s3/pricing/
+as of: 2026-11-09
+region: us-east-1 (US East (N. Virginia))
+prefix_depth: 1
+Estimate from list prices, not your AWS invoice (free tier, credits, discounts not included)
+
+storage by class
+STANDARD objects=1 raw_bytes=1073741824 billable_bytes=1073741824 estimated_usd_month=0.023
+total objects=1 raw_bytes=1073741824 estimated_usd_month=0.023
+
+storage by prefix
+logs/ objects=1 raw_bytes=1073741824 estimated_usd_month=0.023
+
+lifecycle
+as-of: 2026-11-09
+STANDARD_IA horizon_days=30 eligible_objects=1 monthly_now_usd=0.023 monthly_after_usd=0.0125 transition_request_usd=0.00001 early_delete_usd=0.00 savings_over_horizon_usd=0.01049 Not executed
+GLACIER_IR horizon_days=90 eligible_objects=1 monthly_now_usd=0.023 monthly_after_usd=0.004 transition_request_usd=0.00002 early_delete_usd=0.00 savings_over_horizon_usd=0.05698 Not executed
+GLACIER horizon_days=90 eligible_objects=1 monthly_now_usd=0.023 monthly_after_usd=0.00360028533935546875 transition_request_usd=0.00003 early_delete_usd=0.00 savings_over_horizon_usd=0.05816914398193359375 Not executed
+DEEP_ARCHIVE horizon_days=180 eligible_objects=1 monthly_now_usd=0.023 monthly_after_usd=0.0009902056884765625 transition_request_usd=0.00005 early_delete_usd=0.00 savings_over_horizon_usd=0.132008765869140625 Not executed
