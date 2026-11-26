@@ -66,15 +66,15 @@ DEEP_ARCHIVE horizon_days=180 eligible_objects=1 monthly_now_usd=0.023 monthly_a
 
 1 GiB of Standard is 0.023 USD per month. Moving that object to Standard-IA for 30 days saves 0.01049 USD after the 0.00001 transition request. Glacier Flexible Retrieval and Glacier Deep Archive also bill 8 KiB at Standard rates and 32 KiB at the cold rate, so `monthly_after_usd` is the object plus that metadata, not the object alone. Each target line ends with `Not executed`. Without `--as-of` the lifecycle block is `omitted: pass --as-of YYYY-MM-DD` and only storage is priced.
 
-## Aan de slag in 5 minuten
+## Quickstart in 5 minutes
 
-Korte route in het Nederlands; de Nederlandse README (`README.nl.md`) heeft dezelfde koppen als deze.
+Short route; the Dutch README (`README.nl.md`) has the same headings as this one.
 
-1. Bouw de tool met Rust 1.85 of nieuwer: `cargo install --locked --path .`.
-2. Zet in je S3 Inventory-export een kopregel boven de data, in de kolomvolgorde van `manifest.json` (`fileSchema`): `Bucket`, `Key`, `Size`, `StorageClass`, en liefst `LastModifiedDate`.
-3. Draai `s3-inventory-bill --as-of 2026-11-09 inventory.csv` (vervang de datum door vandaag). Zonder `--as-of` krijg je alleen de opslagkosten, geen besparingen.
-4. Lees het rapport: kosten per opslagklasse en per prefix, daarna per doelklasse wat een lifecycle-overgang zou schelen. Elk bedrag is een schatting uit lijstprijzen, geen AWS-factuur.
-5. Gebruik `--json` voor een script, `--md` voor een pull request of wiki, en `--output bestand` om het rapport in een bestand te zetten.
+1. Build the tool with Rust 1.85 or newer: `cargo install --locked --path .`.
+2. Put a header line above the data in your S3 Inventory export, in the column order of `manifest.json` (`fileSchema`): `Bucket`, `Key`, `Size`, `StorageClass`, and preferably `LastModifiedDate`.
+3. Run `s3-inventory-bill --as-of 2026-11-09 inventory.csv` (replace the date with today). Without `--as-of` you only get the storage cost, no savings.
+4. Read the report: cost per storage class and per prefix, then per target class what a lifecycle transition would save. Every amount is an estimate from list prices, not an AWS invoice.
+5. Use `--json` for a script, `--md` for a pull request or wiki, and `--output file` to put the report in a file.
 
 
 ## Options
