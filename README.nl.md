@@ -16,7 +16,7 @@ De eerste rij van elk bestand moet een kopregel zijn met de kolommen `Bucket`, `
 
 ## Installatie
 
-Versie 1.0.0. Deze crate is niet gepubliceerd en versie 1.0.0 heeft geen git-tag, dus er is nog geen installatie via crates.io of een binair archief. Bouw vanuit deze checkout met Rust 1.85 of nieuwer:
+Versie 1.0.1. Deze crate is niet gepubliceerd en versie 1.0.1 heeft geen git-tag, dus er is nog geen installatie via crates.io of een binair archief. Bouw vanuit deze checkout met Rust 1.85 of nieuwer:
 
 ```sh
 cargo install --locked --path .

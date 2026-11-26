@@ -16,7 +16,7 @@ The first row of every file must be a header line that names the columns `Bucket
 
 ## Installation
 
-Version 1.0.0. From crates.io: `cargo install s3-inventory-bill`. Or build from this checkout with Rust 1.85 or newer:
+Version 1.0.1. From crates.io: `cargo install s3-inventory-bill`. Or build from this checkout with Rust 1.85 or newer:
 
 ```sh
 cargo install --locked --path .

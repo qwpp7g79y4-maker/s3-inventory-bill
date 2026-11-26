@@ -5,6 +5,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-11-26
+
+### Changed
+
+- Version number raised from 1.0.0 to 1.0.1. The program behaves the same as 1.0.0; only the version number in the manifest, the documentation and the tests changed.
+
 ## [1.0.0] - 2026-11-15
 
 Changes made after 2026-11-15; the version number did not change.
