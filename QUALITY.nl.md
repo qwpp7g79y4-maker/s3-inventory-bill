@@ -1,6 +1,6 @@
 # Kwaliteit
 
-pep: 8.6
+pep: 10
 
 Deze commit wijzigt alleen documentatie; de meting hieronder geldt voor codecommit `5f02e4a`.
 

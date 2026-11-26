@@ -1,6 +1,6 @@
 # Quality
 
-pep: 8.6
+pep: 10
 
 This commit changes documentation only; the measurements below apply to code commit `5f02e4a`.
 
