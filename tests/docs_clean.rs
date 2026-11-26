@@ -183,7 +183,11 @@ fn the_manifest_holds_no_internal_name_and_excludes_exactly_the_work_files() {
     let (rest, entries) = split_exclude(&text);
     assert!(rest.contains("[package]"), "{rest}");
     assert!(hits(&rest).is_empty(), "{:?}", hits(&rest));
-    let want = vec![concat!("task", ".md"), concat!("blueprint", ".md")];
+    let want = vec![
+        concat!("task", ".md"),
+        concat!("blueprint", ".md"),
+        "*-plugin/",
+    ];
     assert_eq!(entries, want);
 }
 

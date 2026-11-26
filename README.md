@@ -16,14 +16,14 @@ The first row of every file must be a header line that names the columns `Bucket
 
 ## Installation
 
-Version 1.0.0. This crate is not published and version 1.0.0 has no git tag, so there is no crates.io or binary-archive install yet. Build from this checkout with Rust 1.85 or newer:
+Version 1.0.0. From crates.io: `cargo install s3-inventory-bill`. Or build from this checkout with Rust 1.85 or newer:
 
 ```sh
 cargo install --locked --path .
 s3-inventory-bill --help
 ```
 
-The licenses of the third-party crates in the binary are in [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html). A release archive includes that same file. Until a release exists, `cargo install s3-inventory-bill` from crates.io does not work; install from this checkout.
+The licenses of the third-party crates in the binary are in [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html). A release archive includes that same file.
 
 Supported systems: Linux, Windows and macOS are tested by GitHub CI run [45582606112](https://github.com/qwpp7g79y4-maker/s3-inventory-bill/actions/runs/45582606112) on commit `7d7c78befbcb71a4132cc6e174d0ba452037c0a0` (ubuntu-latest, windows-latest, macos-latest and macos-15-intel). A glibc build needs GLIBC_2.34 or newer. No minimum Windows or macOS version has been determined. A musl build has only been linted, not run (see "Limitations" and [QUALITY.md](QUALITY.md)).
 
