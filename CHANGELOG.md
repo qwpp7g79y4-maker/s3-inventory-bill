@@ -81,16 +81,12 @@ Changes made after 2026-11-15; the version number did not change.
 - `.gitattributes` names the file types (`*.csv`, `*.json`, `*.1`, `*.rs`, `*.toml`, `*.yml`) next to `* text=auto eol=lf`. `SECURITY.md` says that memory use with many distinct prefixes is a documented limit. The README says that no minimum Windows or macOS version has been determined.
 - The package includes `man/` and `SECURITY.md`. `homepage` in `Cargo.toml` is `https://www.pepai.nl`.
 
-This version is not published and has no git tag.
-
 
 ### Changed
 
 - Version 1.0.0. `--prices` refuses anything that is not a regular file and reads no further than the length its metadata reported.
 - CI also runs `cargo audit` and `cargo deny --locked check licenses`; `deny.toml` holds the permissive license list.
 - Tests that need Unix paths, symlinks, fifos or control characters in file names run only on Unix (later narrowed: see the entry about Linux in [Unreleased]).
-
-This version is not published and has no git tag.
 
 ## [0.1.0] - 2026-11-09
 
@@ -100,5 +96,3 @@ This version is not published and has no git tag.
 - Lifecycle savings to Standard-IA, Glacier Instant Retrieval, Glacier Flexible Retrieval, and Glacier Deep Archive, with minimum duration and the per-object transition request. The report says the transition is not executed.
 - Built-in US East (N. Virginia) rates from the Amazon S3 pricing page, read on 2026-11-09, and a `--prices` file for another quote.
 - Text table and `--json`. Gzip CSV is read. Parquet and ORC are not.
-
-This version is not published and has no git tag.
