@@ -1,5 +1,7 @@
 # Kwaliteit
 
+pep: 8.6
+
 Deze commit wijzigt alleen documentatie; de meting hieronder geldt voor codecommit `5f02e4a`.
 
 Suite: 217 geslaagd, 0 mislukt, 0 genegeerd.
