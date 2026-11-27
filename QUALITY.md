@@ -6,7 +6,7 @@ This commit changes documentation only; the measurements below apply to code com
 
 Suite: 217 passed, 0 failed, 0 ignored.
 
-This page records checks. It is not a guarantee and it is not a fuzz report. This version has no git tag.
+This page records checks. It is not a guarantee and it is not a fuzz report.
 
 Measured on 2026-11-23, on Linux (x86_64), on the code commit `5f02e4a65fb6f53625ed83678d0df820f7accd07`. Only the five commands in the first table below were run on that commit, from the crate root, with `--locked`, as `cargo fmt --check`, `cargo clippy ...` and `cargo test --locked`; no memory limit and no `-j` or `--test-threads` option was set. The rows of the second table were measured on 2026-11-20 on the earlier code commit `6b36822` and were not run again. GitHub CI on `main` commit `7d7c78befbcb71a4132cc6e174d0ba452037c0a0` passed: run 45582606112, jobs ubuntu-latest, ubuntu-latest with Rust 1.85, windows-latest, macos-latest, macos-15-intel, Dependency licenses, Dependency audit, and Highest glibc symbol. Commits after `5f02e4a` also changed `src/money.rs`, `src/main.rs`, `src/json_scan.rs`, tests, and `.github/workflows/release.yml`. Only measured results are stated.
 
