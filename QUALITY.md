@@ -1,7 +1,5 @@
 # Quality
 
-pep: 10
-
 This commit changes documentation only; the measurements below apply to code commit `5f02e4a`.
 
 Suite: 217 passed, 0 failed, 0 ignored.
