@@ -134,7 +134,7 @@ Het uitgepakte pakket: `cargo package --offline --allow-dirty` gaf 53 paden; het
 ## Niet uitgevoerd
 
 - De release-workflow en een release-archief. De CI is gedraaid: run 45582606112 op `7d7c78befbcb71a4132cc6e174d0ba452037c0a0` is geslaagd. `cargo about generate` schreef ook `THIRD-PARTY-LICENSES.html` in de repository.
-- Een draaiende release: er is geen tag, geen release-archief en geen `cargo publish`.
+- Een draaiende release: er is geen tag en geen release-archief.
 - Een build en een testrun op musl. De Windows- en macOS-testjobs slaagden op diezelfde run.
 - Een fuzz-campagne en een mutatietool.
 - `cargo audit` met een vers opgehaalde advisory-database (de lokale database is gelezen).
