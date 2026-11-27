@@ -16,14 +16,14 @@ De eerste rij van elk bestand moet een kopregel zijn met de kolommen `Bucket`, `
 
 ## Installatie
 
-Versie 1.0.1. Deze crate is niet gepubliceerd en versie 1.0.1 heeft geen git-tag, dus er is nog geen installatie via crates.io of een binair archief. Bouw vanuit deze checkout met Rust 1.85 of nieuwer:
+Versie 1.0.2. Van crates.io: `cargo install s3-inventory-bill`. Of bouw vanuit deze checkout met Rust 1.85 of nieuwer:
 
 ```sh
 cargo install --locked --path .
 s3-inventory-bill --help
 ```
 
-De licenties van de derde-partij-crates in de binary staan in [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html). Een release-archief bevat datzelfde bestand. Zolang er geen release is, werkt `cargo install s3-inventory-bill` vanaf crates.io niet; installeer vanuit deze checkout.
+De licenties van de derde-partij-crates in de binary staan in [THIRD-PARTY-LICENSES.html](THIRD-PARTY-LICENSES.html). Een release-archief bevat datzelfde bestand.
 
 Ondersteunde systemen: Linux, Windows en macOS zijn getest door GitHub-CI-run [45582606112](https://github.com/qwpp7g79y4-maker/s3-inventory-bill/actions/runs/45582606112) op commit `7d7c78befbcb71a4132cc6e174d0ba452037c0a0` (ubuntu-latest, windows-latest, macos-latest en macos-15-intel). Een glibc-build heeft GLIBC_2.34 of nieuwer nodig. Er is geen minimale Windows- of macOS-versie vastgesteld. Een musl-build is alleen gelint, niet gedraaid (zie "Beperkingen" en [QUALITY.nl.md](QUALITY.nl.md)).
 

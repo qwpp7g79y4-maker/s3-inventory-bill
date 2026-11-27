@@ -1,6 +1,6 @@
 [package]
 name = "s3-inventory-bill"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
 rust-version = "1.85"
 authors = ["PEPAI <pep_ai@icloud.com>"]

@@ -49,8 +49,8 @@ fn version_line(flag: &str) -> String {
 #[test]
 fn version_flags_print_the_crate_version_and_in_debug_the_commit() {
     let expected = match (cfg!(debug_assertions), own_commit()) {
-        (true, Some(sha)) => format!("s3-inventory-bill 1.0.1 ({sha})"),
-        _ => "s3-inventory-bill 1.0.1".to_string(),
+        (true, Some(sha)) => format!("s3-inventory-bill 1.0.2 ({sha})"),
+        _ => "s3-inventory-bill 1.0.2".to_string(),
     };
     for flag in ["--version", "-V"] {
         assert_eq!(version_line(flag), expected, "{flag}");

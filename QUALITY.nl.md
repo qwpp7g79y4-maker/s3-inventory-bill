@@ -6,7 +6,7 @@ Deze commit wijzigt alleen documentatie; de meting hieronder geldt voor codecomm
 
 Suite: 217 geslaagd, 0 mislukt, 0 genegeerd.
 
-Deze pagina legt controles vast. Het is geen garantie en geen fuzz-rapport. Deze versie is niet gepubliceerd en heeft geen git-tag. De Engelse pagina (`QUALITY.md`) heeft dezelfde inhoud en is leidend bij een verschil.
+Deze pagina legt controles vast. Het is geen garantie en geen fuzz-rapport. Deze versie heeft geen git-tag. De Engelse pagina (`QUALITY.md`) heeft dezelfde inhoud en is leidend bij een verschil.
 
 Gemeten op 2026-11-23, op Linux (x86_64), op de code-commit `5f02e4a65fb6f53625ed83678d0df820f7accd07`. Alleen de vijf commando's in de eerste tabel hieronder zijn op die commit gedraaid, vanuit de root van de crate, met `--locked`, als `cargo fmt --check`, `cargo clippy ...` en `cargo test --locked`; er was geen geheugenlimiet en geen optie `-j` of `--test-threads`. De rijen van de tweede tabel zijn op 2026-11-20 gemeten op de eerdere codecommit `6b36822` en niet opnieuw uitgevoerd. GitHub-CI op `main` commit `7d7c78befbcb71a4132cc6e174d0ba452037c0a0` is geslaagd: run 45582606112, jobs ubuntu-latest, ubuntu-latest met Rust 1.85, windows-latest, macos-latest, macos-15-intel, Dependency licenses, Dependency audit en Highest glibc symbol. Commits na `5f02e4a` wijzigden ook `src/money.rs`, `src/main.rs`, `src/json_scan.rs`, tests en `.github/workflows/release.yml`. Alleen echte meetwaarden staan hier; een controle die niet is uitgevoerd staat onder "Niet uitgevoerd".
 

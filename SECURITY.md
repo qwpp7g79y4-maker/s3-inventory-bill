@@ -6,7 +6,7 @@
 | --- | --- |
 | 1.0.x | Yes |
 
-Security fixes go into the latest release only. The crate is not published and has no git tag.
+Security fixes go into the latest release only. The crate has no git tag.
 
 ## Reporting a vulnerability
 

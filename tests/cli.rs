@@ -61,7 +61,7 @@ fn help_and_version_exit_0() {
     let (code, stdout, stderr) = run(&["--version"]);
     assert_eq!(code, 0);
     assert!(stderr.is_empty(), "{stderr}");
-    assert!(stdout.contains("s3-inventory-bill 1.0.1"));
+    assert!(stdout.contains("s3-inventory-bill 1.0.2"));
 }
 
 #[test]
